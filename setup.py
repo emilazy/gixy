@@ -8,8 +8,13 @@ with open('gixy/__init__.py', 'r') as fd:
 if not version:
     raise RuntimeError('Cannot find version information')
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+# README.md is not present in Docker image setup
+long_description = None
+try:
+    with open("README.md", "r", encoding="utf-8") as fh:
+        long_description = fh.read()
+except FileNotFoundError:
+    pass
 
 setup(
     name='gixy-ng',
