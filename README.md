@@ -1,8 +1,8 @@
 GIXY
 ====
 [![Mozilla Public License 2.0](https://img.shields.io/github/license/dvershinin/gixy.svg?style=flat-square)](https://github.com/dvershinin/gixy/blob/master/LICENSE)
-[![Build Status](https://img.shields.io/travis/dvershinin/gixy.svg?style=flat-square)](https://travis-ci.org/dvershinin/gixy)
-[![Your feedback is greatly appreciated](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)](https://github.com/dvershinin/gixy/issues/new)
+[![Python tests](https://github.com/dvershinin/gixy/actions/workflows/pythonpackage.yml/badge.svg)](https://github.com/dvershinin/gixy/actions/workflows/pythonpackage.yml)
+[![Your feedback is greatly appreciated](https://img.shields.io/maintenance/yes/2023.svg?style=flat-square)](https://github.com/dvershinin/gixy/issues/new)
 [![GitHub issues](https://img.shields.io/github/issues/dvershinin/gixy.svg?style=flat-square)](https://github.com/dvershinin/gixy/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/dvershinin/gixy.svg?style=flat-square)](https://github.com/dvershinin/gixy/pulls)
 
