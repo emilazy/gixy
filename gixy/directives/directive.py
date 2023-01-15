@@ -153,3 +153,27 @@ class AliasDirective(Directive):
     def __init__(self, name, args):
         super(AliasDirective, self).__init__(name, args)
         self.path = args[0]
+
+
+class ResolverDirective(Directive):
+    """
+    Syntax:	resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];
+    """
+    nginx_name = 'resolver'
+
+    def __init__(self, name, args):
+        super(ResolverDirective, self).__init__(name, args)
+        addresses = []
+        for arg in args:
+            if '=' in arg:
+                continue
+            addresses.append(arg)
+        self.addresses = addresses
+
+    def get_external_nameservers(self):
+        external_nameservers = []
+        for addr in self.addresses:
+            ip = addr.rsplit(':', 1)[0]
+            if ip not in ['127.0.0.1', '[::1]']:
+                external_nameservers.append(ip)
+        return external_nameservers
