@@ -9,7 +9,7 @@ class if_is_evil(Plugin):
             alias /home/;
         }
     """
-    summary = 'If is Evil… when used in location context.'
+    summary = 'If is Evil... when used in location context.'
     severity = gixy.severity.HIGH
     description = 'Directive "if" has problems when used in location context, in some cases it does not do what you ' \
                   'expect but something completely different instead. In some cases it even segfaults. It is ' \
