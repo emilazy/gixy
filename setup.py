@@ -1,5 +1,10 @@
 import re
 from setuptools import setup, find_packages
+# FileNotFoundError is not there in Python 2, define it:
+try:
+    FileNotFoundError
+except NameError:
+    FileNotFoundError = IOError
 
 with open('gixy/__init__.py', 'r') as fd:
     version = re.search(r'^version\s*=\s*[\'"]([^\'"]*)[\'"]',
