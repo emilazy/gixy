@@ -6,7 +6,7 @@ Version:        0.1.5
 Release:        0%{?dist}
 License:        MPLv2.0
 Group:          Development/Utilities
-URL:            https://github.com/yandex/gixy
+URL:            https://github.com/dvershinin/gixy
 
 Source:         https://github.com/yandex/%{name}/archive/v%{version}.tar.gz
 

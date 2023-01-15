@@ -1,10 +1,10 @@
 GIXY
 ====
-[![Mozilla Public License 2.0](https://img.shields.io/github/license/yandex/gixy.svg?style=flat-square)](https://github.com/yandex/gixy/blob/master/LICENSE)
-[![Build Status](https://img.shields.io/travis/yandex/gixy.svg?style=flat-square)](https://travis-ci.org/yandex/gixy)
-[![Your feedback is greatly appreciated](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)](https://github.com/yandex/gixy/issues/new)
-[![GitHub issues](https://img.shields.io/github/issues/yandex/gixy.svg?style=flat-square)](https://github.com/yandex/gixy/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/yandex/gixy.svg?style=flat-square)](https://github.com/yandex/gixy/pulls)
+[![Mozilla Public License 2.0](https://img.shields.io/github/license/dvershinin/gixy.svg?style=flat-square)](https://github.com/dvershinin/gixy/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/dvershinin/gixy.svg?style=flat-square)](https://travis-ci.org/dvershinin/gixy)
+[![Your feedback is greatly appreciated](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)](https://github.com/dvershinin/gixy/issues/new)
+[![GitHub issues](https://img.shields.io/github/issues/dvershinin/gixy.svg?style=flat-square)](https://github.com/dvershinin/gixy/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/dvershinin/gixy.svg?style=flat-square)](https://github.com/dvershinin/gixy/pulls)
 
 # Overview
 <img align="right" width="192" height="192" src="/docs/logo.png">
@@ -18,16 +18,16 @@ Disclaimer: Gixy is well tested only on GNU/Linux, other OSs may have some issue
 
 # What it can do
 Right now Gixy can find:
-  * [[ssrf] Server Side Request Forgery](https://github.com/yandex/gixy/blob/master/docs/en/plugins/ssrf.md)
-  * [[http_splitting] HTTP Splitting](https://github.com/yandex/gixy/blob/master/docs/en/plugins/httpsplitting.md)
-  * [[origins] Problems with referrer/origin validation](https://github.com/yandex/gixy/blob/master/docs/en/plugins/origins.md)
-  * [[add_header_redefinition] Redefining of response headers by  "add_header" directive](https://github.com/yandex/gixy/blob/master/docs/en/plugins/addheaderredefinition.md)
-  * [[host_spoofing] Request's Host header forgery](https://github.com/yandex/gixy/blob/master/docs/en/plugins/hostspoofing.md)
-  * [[valid_referers] none in valid_referers](https://github.com/yandex/gixy/blob/master/docs/en/plugins/validreferers.md)
-  * [[add_header_multiline] Multiline response headers](https://github.com/yandex/gixy/blob/master/docs/en/plugins/addheadermultiline.md)
-  * [[alias_traversal] Path traversal via misconfigured alias](https://github.com/yandex/gixy/blob/master/docs/en/plugins/aliastraversal.md)
+  * [[ssrf] Server Side Request Forgery](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/ssrf.md)
+  * [[http_splitting] HTTP Splitting](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/httpsplitting.md)
+  * [[origins] Problems with referrer/origin validation](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/origins.md)
+  * [[add_header_redefinition] Redefining of response headers by  "add_header" directive](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/addheaderredefinition.md)
+  * [[host_spoofing] Request's Host header forgery](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/hostspoofing.md)
+  * [[valid_referers] none in valid_referers](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/validreferers.md)
+  * [[add_header_multiline] Multiline response headers](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/addheadermultiline.md)
+  * [[alias_traversal] Path traversal via misconfigured alias](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/aliastraversal.md)
 
-You can find things that Gixy is learning to detect at [Issues labeled with "new plugin"](https://github.com/yandex/gixy/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+plugin%22)
+You can find things that Gixy is learning to detect at [Issues labeled with "new plugin"](https://github.com/dvershinin/gixy/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+plugin%22)
 
 # Installation
 Gixy is distributed on [PyPI](https://pypi.python.org/pypi/gixy). The best way to install it is with pip:
@@ -51,7 +51,7 @@ $ gixy /etc/nginx/nginx.conf
 
 Problem: [http_splitting] Possible HTTP-Splitting vulnerability.
 Description: Using variables that can contain "\n" may lead to http injection.
-Additional info: https://github.com/yandex/gixy/blob/master/docs/ru/plugins/httpsplitting.md
+Additional info: https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/httpsplitting.md
 Reason: At least variable "$action" can contain "\n"
 Pseudo config:
 include /etc/nginx/sites/default.conf;
@@ -91,11 +91,11 @@ Or something else, you can find all other `gixy` arguments with the help command
 
 ## Docker usage
 
-Gixy is available as a Docker image [from the Docker hub](https://hub.docker.com/r/yandex/gixy/). To
+Gixy is available as a Docker image [from the Docker hub](https://hub.docker.com/r/dvershinin/gixy/). To
 use it, mount the configuration that you want to analyse as a volume and provide the path to the
 configuration file when running the Gixy image.
 ```
-$ docker run --rm -v `pwd`/nginx.conf:/etc/nginx/conf/nginx.conf yandex/gixy /etc/nginx/conf/nginx.conf
+$ docker run --rm -v `pwd`/nginx.conf:/etc/nginx/conf/nginx.conf dvershinin/gixy /etc/nginx/conf/nginx.conf
 ```
 
 If you have an image that already contains your nginx configuration, you can share the configuration
@@ -104,7 +104,7 @@ with the Gixy container as a volume.
 $  docker run --rm --name nginx -d -v /etc/nginx
 nginx:alpinef68f2833e986ae69c0a5375f9980dc7a70684a6c233a9535c2a837189f14e905
 
-$  docker run --rm --volumes-from nginx yandex/gixy /etc/nginx/nginx.conf
+$  docker run --rm --volumes-from nginx dvershinin/gixy /etc/nginx/nginx.conf
 
 ==================== Results ===================
 No issues found.

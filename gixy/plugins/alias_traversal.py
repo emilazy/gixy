@@ -13,7 +13,7 @@ class alias_traversal(Plugin):
     severity = gixy.severity.HIGH
     description = 'Using alias in a prefixed location that doesn\'t ends with directory separator could lead to path ' \
                   'traversal vulnerability. '
-    help_url = 'https://github.com/yandex/gixy/blob/master/docs/en/plugins/aliastraversal.md'
+    help_url = 'https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/aliastraversal.md'
     directives = ['alias']
 
     def audit(self, directive):

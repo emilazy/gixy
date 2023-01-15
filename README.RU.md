@@ -1,10 +1,10 @@
 GIXY
 ====
-[![Mozilla Public License 2.0](https://img.shields.io/github/license/yandex/gixy.svg?style=flat-square)](https://github.com/yandex/gixy/blob/master/LICENSE)
-[![Build Status](https://img.shields.io/travis/yandex/gixy.svg?style=flat-square)](https://travis-ci.org/yandex/gixy)
-[![Your feedback is greatly appreciated](https://img.shields.io/maintenance/yes/2018.svg?style=flat-square)](https://github.com/yandex/gixy/issues/new)
-[![GitHub issues](https://img.shields.io/github/issues/yandex/gixy.svg?style=flat-square)](https://github.com/yandex/gixy/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/yandex/gixy.svg?style=flat-square)](https://github.com/yandex/gixy/pulls)
+[![Mozilla Public License 2.0](https://img.shields.io/github/license/dvershinin/gixy.svg?style=flat-square)](https://github.com/dvershinin/gixy/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/dvershinin/gixy.svg?style=flat-square)](https://travis-ci.org/dvershinin/gixy)
+[![Your feedback is greatly appreciated](https://img.shields.io/maintenance/yes/2018.svg?style=flat-square)](https://github.com/dvershinin/gixy/issues/new)
+[![GitHub issues](https://img.shields.io/github/issues/dvershinin/gixy.svg?style=flat-square)](https://github.com/dvershinin/gixy/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/dvershinin/gixy.svg?style=flat-square)](https://github.com/dvershinin/gixy/pulls)
 
 # Overview
 <img align="right" width="192" height="192" src="/docs/logo.png">
@@ -17,16 +17,16 @@ Gixy — это утилита для анализа конфигурации Ng
 &nbsp;
 # Что умеет
 На текущий момент Gixy способна обнаружить:
-  * [[ssrf] Server Side Request Forgery](https://github.com/yandex/gixy/blob/master/docs/ru/plugins/ssrf.md)
-  * [[http_splitting] HTTP Splitting](https://github.com/yandex/gixy/blob/master/docs/ru/plugins/httpsplitting.md)
-  * [[origins] Проблемы валидации referrer/origin](https://github.com/yandex/gixy/blob/master/docs/ru/plugins/origins.md)
-  * [[add_header_redefinition] Переопределение "вышестоящих" заголовков ответа директивой "add_header"](https://github.com/yandex/gixy/blob/master/docs/ru/plugins/addheaderredefinition.md)
-  * [[host_spoofing] Подделка заголовка запроса Host](https://github.com/yandex/gixy/blob/master/docs/ru/plugins/hostspoofing.md)
-  * [[valid_referers] none in valid_referers](https://github.com/yandex/gixy/blob/master/docs/ru/plugins/validreferers.md)
-  * [[add_header_multiline] Многострочные заголовоки ответа](https://github.com/yandex/gixy/blob/master/docs/ru/plugins/addheadermultiline.md)
-  * [[alias_traversal] Path traversal при использовании alias](https://github.com/yandex/gixy/blob/master/docs/ru/plugins/aliastraversal.md)
+  * [[ssrf] Server Side Request Forgery](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/ssrf.md)
+  * [[http_splitting] HTTP Splitting](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/httpsplitting.md)
+  * [[origins] Проблемы валидации referrer/origin](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/origins.md)
+  * [[add_header_redefinition] Переопределение "вышестоящих" заголовков ответа директивой "add_header"](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/addheaderredefinition.md)
+  * [[host_spoofing] Подделка заголовка запроса Host](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/hostspoofing.md)
+  * [[valid_referers] none in valid_referers](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/validreferers.md)
+  * [[add_header_multiline] Многострочные заголовоки ответа](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/addheadermultiline.md)
+  * [[alias_traversal] Path traversal при использовании alias](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/aliastraversal.md)
 
-Проблемы, которым Gixy только учится можно найти в [Issues с меткой "new plugin"](https://github.com/yandex/gixy/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+plugin%22)
+Проблемы, которым Gixy только учится можно найти в [Issues с меткой "new plugin"](https://github.com/dvershinin/gixy/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+plugin%22)
 
 # Установка
 Наиболее простой способ установки Gixy - воспользоваться pip для установки из [PyPI](https://pypi.python.org/pypi/gixy):
@@ -44,7 +44,7 @@ $ gixy /etc/nginx/nginx.conf
 
 Problem: [http_splitting] Possible HTTP-Splitting vulnerability.
 Description: Using variables that can contain "\n" may lead to http injection.
-Additional info: https://github.com/yandex/gixy/wiki/ru/httpsplitting
+Additional info: https://github.com/dvershinin/gixy/wiki/ru/httpsplitting
 Reason: At least variable "$action" can contain "\n"
 Pseudo config:
 include /etc/nginx/sites/default.conf;
