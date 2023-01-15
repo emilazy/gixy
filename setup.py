@@ -8,13 +8,18 @@ with open('gixy/__init__.py', 'r') as fd:
 if not version:
     raise RuntimeError('Cannot find version information')
 
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
 setup(
-    name='gixy',
+    name='gixy-ng',
     version=version,
-    description='Nginx configuration [sec]analyzer',
+    description='NGINX configuration [sec]analyzer',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     keywords='nginx security lint static-analysis',
-    author='Yandex IS Team',
-    author_email='buglloc@yandex.ru',
+    author='Yandex IS Team, GetPageSpeed LLC',
+    author_email='buglloc@yandex.ru, info@getpagespeed.com',
     url='https://github.com/dvershinin/gixy',
     install_requires=[
         'pyparsing>=1.5.5,<=2.4.7',

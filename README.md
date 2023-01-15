@@ -26,13 +26,27 @@ Right now Gixy can find:
   * [[valid_referers] none in valid_referers](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/validreferers.md)
   * [[add_header_multiline] Multiline response headers](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/addheadermultiline.md)
   * [[alias_traversal] Path traversal via misconfigured alias](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/aliastraversal.md)
+  * [[if_is_evil] If is evil when used in location context](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/if_is_evil.md)
+  * [[allow_without_deny] Allow specified without deny](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/aliastraversal.md)
+  * [[add_header_content_type] Setting Content-Type via add_header](https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/aliastraversal.md)
+  * [[resolver_external] Using external DNS nameservers](https://blog.zorinaq.com/nginx-resolver-vulns/)
 
 You can find things that Gixy is learning to detect at [Issues labeled with "new plugin"](https://github.com/dvershinin/gixy/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+plugin%22)
 
 # Installation
-Gixy is distributed on [PyPI](https://pypi.python.org/pypi/gixy). The best way to install it is with pip:
+
+## CentOS/RHEL and other RPM-based systems
+
 ```bash
-pip install gixy
+yum -y install https://extras.getpagespeed.com/release-latest.rpm
+yum -y install gixy
+```
+### Other systems
+
+Gixy is distributed on [PyPI](https://pypi.python.org/pypi/gixy-ng). The best way to install it is with pip:
+
+```bash
+pip install gixy-ng
 ```
 
 Run Gixy and check results:
@@ -41,7 +55,7 @@ gixy
 ```
 
 # Usage
-By default Gixy will try to analyze Nginx configuration placed in `/etc/nginx/nginx.conf`.
+By default, Gixy will try to analyze Nginx configuration placed in `/etc/nginx/nginx.conf`.
 
 But you can always specify needed path:
 ```
@@ -89,13 +103,19 @@ Total issues:
 
 Or something else, you can find all other `gixy` arguments with the help command: `gixy --help`
 
+You can also make `gixy` use pipes (stdin), like so:
+
+```bash
+echo "resolver 1.1.1.1;" | gixy -
+```
+
 ## Docker usage
 
-Gixy is available as a Docker image [from the Docker hub](https://hub.docker.com/r/dvershinin/gixy/). To
+Gixy is available as a Docker image [from the Docker hub](https://hub.docker.com/r/getpagespeed/gixy/). To
 use it, mount the configuration that you want to analyse as a volume and provide the path to the
 configuration file when running the Gixy image.
 ```
-$ docker run --rm -v `pwd`/nginx.conf:/etc/nginx/conf/nginx.conf dvershinin/gixy /etc/nginx/conf/nginx.conf
+$ docker run --rm -v `pwd`/nginx.conf:/etc/nginx/conf/nginx.conf getpagespeed/gixy /etc/nginx/conf/nginx.conf
 ```
 
 If you have an image that already contains your nginx configuration, you can share the configuration
