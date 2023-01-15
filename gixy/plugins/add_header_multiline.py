@@ -23,6 +23,15 @@ add_header Content-Security-Policy "
             if '\n\x20' in value or '\n\t' in value:
                 self.add_issue(directive=directive)
                 break
+            if '\n' in value:
+                reason = 'A newline character is found in the directive "{directive}". The resulting header will be ' \
+                         'incomplete. Ensure the value is fit on a single line'.format(directive=directive.name)
+                self.add_issue(
+                    severity=gixy.severity.HIGH,
+                    directive=directive,
+                    reason=reason
+                )
+                break
 
 
 def get_header_values(directive):
