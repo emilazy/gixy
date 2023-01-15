@@ -11,7 +11,7 @@ class add_header_content_type(Plugin):
     severity = gixy.severity.LOW
     description = 'Target Content-Type in NGINX should not be set via "add_header"'
     help_url = 'https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/add_header_content_type.md'
-    directives = ['add_header', 'more_set_headers']
+    directives = ['add_header']
 
     def audit(self, directive):
         header_values = get_header_values(directive)
