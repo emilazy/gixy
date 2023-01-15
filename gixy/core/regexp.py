@@ -3,7 +3,10 @@ import logging
 import re
 import random
 import itertools
-from cached_property import cached_property
+try:
+    from cached_property import cached_property
+except ImportError:
+    from functools import cached_property
 
 import gixy.core.sre_parse.sre_parse as sre_parse
 
