@@ -15,9 +15,9 @@ setup(
     keywords='nginx security lint static-analysis',
     author='Yandex IS Team',
     author_email='buglloc@yandex.ru',
-    url='https://github.com/yandex/gixy',
+    url='https://github.com/dvershinin/gixy',
     install_requires=[
-        'pyparsing>=1.5.5',
+        'pyparsing>=1.5.5,<=2.4.7',
         'cached-property>=1.2.0',
         'argparse>=1.4.0;python_version<"3.2"',
         'six>=1.1.0',
