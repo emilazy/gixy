@@ -1,4 +1,6 @@
 from nose.tools import assert_equals, assert_true
+
+from gixy.formatters import BaseFormatter
 from tests.asserts import assert_in
 import os
 from os import path
