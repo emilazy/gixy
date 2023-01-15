@@ -4,6 +4,6 @@ ADD . /src
 
 WORKDIR /src
 
-RUN python3 setup.py install
+RUN ls -al && python3 setup.py install
 
 ENTRYPOINT ["gixy"]
