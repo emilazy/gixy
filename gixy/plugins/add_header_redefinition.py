@@ -18,12 +18,7 @@ class add_header_redefinition(Plugin):
                    'See documentation: http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header')
     help_url = 'https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/addheaderredefinition.md'
     directives = ['server', 'location', 'if']
-    options = {'headers': set(['x-frame-options',
-                               'x-content-type-options',
-                               'x-xss-protection',
-                               'content-security-policy',
-                               'cache-control'])
-               }
+    options = {'headers': set()}
 
     def __init__(self, config):
         super(add_header_redefinition, self).__init__(config)
@@ -42,8 +37,10 @@ class add_header_redefinition(Plugin):
             parent_headers = get_headers(parent)
             if not parent_headers:
                 continue
+            diff = parent_headers ^ actual_headers
 
-            diff = (parent_headers - actual_headers) & self.interesting_headers
+            if len(self.interesting_headers):
+                diff = diff & self.interesting_headers
 
             if len(diff):
                 self._report_issue(directive, parent, diff)
