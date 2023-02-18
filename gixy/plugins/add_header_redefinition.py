@@ -37,7 +37,8 @@ class add_header_redefinition(Plugin):
             parent_headers = get_headers(parent)
             if not parent_headers:
                 continue
-            diff = parent_headers ^ actual_headers
+ 
+            diff = parent_headers - actual_headers
 
             if len(self.interesting_headers):
                 diff = diff & self.interesting_headers
