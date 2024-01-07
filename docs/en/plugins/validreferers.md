@@ -9,7 +9,8 @@ Typical problems with this module's config:
 
 > Notice: at the moment, Gixy can only detect the use of `none` as a valid referer.
 
-## Why none is bad?
+## Why `none` is bad?
+
 According to [docs](http://nginx.org/ru/docs/http/ngx_http_referer_module.html#valid_referers):
 > `none` - the “Referer” field is missing in the request header;
 

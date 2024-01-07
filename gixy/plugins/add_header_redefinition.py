@@ -13,7 +13,7 @@ class add_header_redefinition(Plugin):
         }
     """
     summary = 'Nested "add_header" drops parent headers.'
-    severity = gixy.severity.MEDIUM
+    severity = gixy.severity.LOW
     description = ('"add_header" replaces ALL parent headers. '
                    'See documentation: http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header')
     help_url = 'https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/addheaderredefinition.md'
@@ -23,6 +23,14 @@ class add_header_redefinition(Plugin):
     def __init__(self, config):
         super(add_header_redefinition, self).__init__(config)
         self.interesting_headers = self.config.get('headers')
+        # Define secure headers that should escalate severity
+        self.secure_headers = [
+            'x-frame-options',
+            'x-content-type-options',
+            'x-xss-protection',
+            'content-security-policy',
+            'cache-control'
+        ]
 
     def audit(self, directive):
         if not directive.is_block:
@@ -37,7 +45,7 @@ class add_header_redefinition(Plugin):
             parent_headers = get_headers(parent)
             if not parent_headers:
                 continue
- 
+
             diff = parent_headers - actual_headers
 
             if len(self.interesting_headers):
@@ -52,10 +60,17 @@ class add_header_redefinition(Plugin):
         directives = []
         # Add headers from parent level
         directives.extend(parent.find('add_header'))
-        # Add headers from current level
+        # Add headers from the current level
         directives.extend(current.find('add_header'))
+
+        # Check if any dropped header is a secure header
+        is_secure_header_dropped = any(header in self.secure_headers for header in diff)
+
+        # Set severity based on whether a secure header was dropped
+        issue_severity = gixy.severity.MEDIUM if is_secure_header_dropped else self.severity
+
         reason = 'Parent headers "{headers}" was dropped in current level'.format(headers='", "'.join(diff))
-        self.add_issue(directive=directives, reason=reason)
+        self.add_issue(directive=directives, reason=reason, severity=issue_severity)
 
 
 def get_headers(directive):
