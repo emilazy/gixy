@@ -171,9 +171,35 @@ class ResolverDirective(Directive):
         self.addresses = addresses
 
     def get_external_nameservers(self):
+        """Get a list of external nameservers used by the resolver directive"""
         external_nameservers = []
         for addr in self.addresses:
             ip = addr.rsplit(':', 1)[0]
-            if ip not in ['127.0.0.1', '[::1]']:
-                external_nameservers.append(ip)
+
+            # Check for IPv4 addresses
+            if '.' in ip:
+                # Exclude loopback addresses (127.0.0.0/8)
+                if ip.startswith('127.'):
+                    continue
+                # Exclude private addresses (10.x.x.x, 172.16.x.x - 172.31.x.x, 192.168.x.x)
+                if ip.startswith('10.') or ip.startswith('192.168.'):
+                    continue
+                if ip.startswith('172.'):
+                    second_octet = int(ip.split('.')[1])
+                    if 16 <= second_octet <= 31:
+                        continue
+
+            # Check for IPv6 addresses
+            elif ':' in ip:
+                # Exclude loopback address ([::1])
+                if ip == '::1':
+                    continue
+                # Exclude link-local addresses (fe80::/10)
+                if ip.startswith('fe80:'):
+                    continue
+                # Exclude unique local addresses (fc00::/7)
+                if ip.startswith('fc') or ip.startswith('fd'):
+                    continue
+
+            external_nameservers.append(ip)
         return external_nameservers

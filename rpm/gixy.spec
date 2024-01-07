@@ -25,7 +25,7 @@ Provides:       %{name} = %{verion}-%{release}
 ########################################################################################
 
 %description
-Gixy is a tool to analyze Nginx configuration. The main goal of Gixy is to prevent 
+Gixy is a tool to analyze Nginx configuration. The main goal of Gixy is to prevent
 misconfiguration and automate flaw detection.
 
 ########################################################################################
@@ -33,8 +33,6 @@ misconfiguration and automate flaw detection.
 %prep
 %setup -qn %{name}-%{version}
 
-%clean
-rm -rf %{buildroot}
 
 %build
 python setup.py build
@@ -75,4 +73,3 @@ python setup.py install --prefix=%{_prefix} \
 
 * Sat Apr 29 2017 Yandex Team <opensource@yandex-team.ru> - 0.1.1-0
 - Initial build
-
