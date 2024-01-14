@@ -4,13 +4,14 @@ from gixy.plugins.plugin import Plugin
 
 class version_disclosure(Plugin):
     """
-    Syntax for the directive: resolver 127.0.0.1 [::1]:5353 valid=30s;
+    Syntax for the directive: server_tokens off;
     """
-    summary = 'Do not use external nameservers for "resolver"'
+    summary = 'Do not enable server_tokens on or server_tokend build'
     severity = gixy.severity.HIGH
-    description = 'Using external nameservers allows someone to send spoofed DNS replies to poison the resolver ' \
-                  'cache, causing NGINX to proxy HTTP requests to an arbitrary upstream server.'
-    help_url = 'https://blog.zorinaq.com/nginx-resolver-vulns/'
+    description = ("Using server_tokens on; or server_tokens build;  allows an "
+                   "attacker to learn the version of NGINX you are running, which can "
+                   "be used to exploit known vulnerabilities.")
+    help_url = 'https://gixy.getpagespeed.com/en/plugins/version_disclosure/'
     directives = ['server_tokens']
 
     def audit(self, directive):
@@ -18,5 +19,5 @@ class version_disclosure(Plugin):
             self.add_issue(
                 severity=gixy.severity.HIGH,
                 directive=[directive, directive.parent],
-                reason="User server_tokens off to hide nginx version"
+                reason="Using server_tokens value which promotes information disclosure"
             )

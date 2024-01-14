@@ -155,6 +155,44 @@ class AliasDirective(Directive):
         self.path = args[0]
 
 
+def is_local_ipv6(ip):
+    """
+    Check if an IPv6 address is a local address
+    IP may include a port number, e.g. [::1]:80
+    If port is not specified, IP can be specified without brackets, e.g. ::1
+    """
+    # Remove brackets if present
+    if ip.startswith('[') and ']' in ip:
+        ip = ip.split(']')[0][1:]
+
+    # Exclude loopback address ([::1])
+    if ip == '::1':
+        return True
+    # Exclude link-local addresses (fe80::/10)
+    if ip.startswith('fe80:'):
+        return True
+    # Exclude unique local addresses (fc00::/7)
+    if ip.startswith('fc') or ip.startswith('fd'):
+        return True
+    return False
+
+
+def is_local_ipv4(addr):
+    """Check if an IPv4 address is a local address"""
+    ip = addr.rsplit(':', 1)[0]
+    # Exclude loopback addresses (127.0.0.0/8)
+    if ip.startswith('127.'):
+        return True
+    # Exclude private addresses (10.x.x.x, 172.16.x.x - 172.31.x.x, 192.168.x.x)
+    if ip.startswith('10.') or ip.startswith('192.168.'):
+        return True
+    if ip.startswith('172.'):
+        second_octet = int(ip.split('.')[1])
+        if 16 <= second_octet <= 31:
+            return True
+    return False
+
+
 class ResolverDirective(Directive):
     """
     Syntax:	resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];
@@ -174,32 +212,12 @@ class ResolverDirective(Directive):
         """Get a list of external nameservers used by the resolver directive"""
         external_nameservers = []
         for addr in self.addresses:
-            ip = addr.rsplit(':', 1)[0]
-
             # Check for IPv4 addresses
-            if '.' in ip:
-                # Exclude loopback addresses (127.0.0.0/8)
-                if ip.startswith('127.'):
-                    continue
-                # Exclude private addresses (10.x.x.x, 172.16.x.x - 172.31.x.x, 192.168.x.x)
-                if ip.startswith('10.') or ip.startswith('192.168.'):
-                    continue
-                if ip.startswith('172.'):
-                    second_octet = int(ip.split('.')[1])
-                    if 16 <= second_octet <= 31:
-                        continue
-
+            if '.' in addr and is_local_ipv4(addr):
+                continue
             # Check for IPv6 addresses
-            elif ':' in ip:
-                # Exclude loopback address ([::1])
-                if ip == '::1':
-                    continue
-                # Exclude link-local addresses (fe80::/10)
-                if ip.startswith('fe80:'):
-                    continue
-                # Exclude unique local addresses (fc00::/7)
-                if ip.startswith('fc') or ip.startswith('fd'):
-                    continue
+            elif ':' in addr and is_local_ipv6(addr):
+                continue
 
-            external_nameservers.append(ip)
+            external_nameservers.append(addr)
         return external_nameservers

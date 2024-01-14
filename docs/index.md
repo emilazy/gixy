@@ -31,7 +31,7 @@ Right now Gixy can find:
 *   [[allow_without_deny] Allow specified without deny](en/plugins/allow_without_deny.md)
 *   [[add_header_content_type] Setting Content-Type via add_header](en/plugins/add_header_content_type.md)
 *   [[resolver_external] Using external DNS nameservers](https://blog.zorinaq.com/nginx-resolver-vulns/)
-*   [[version_disclosure] Using external DNS nameservers](en/plugins/version_disclosure.md)
+*   [[version_disclosure] Using insecure values for server_tokens](en/plugins/version_disclosure.md)
 
 You can find things that Gixy is learning to detect at [Issues labeled with "new plugin"](https://github.com/dvershinin/gixy/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+plugin%22)
 
