@@ -7,24 +7,25 @@ GIXY
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/dvershinin/gixy.svg?style=flat-square)](https://github.com/dvershinin/gixy/pulls)
 
 # Overview
-<img align="right" width="192" height="192" src="/docs/logo.png">
+<img align="right" width="192" height="192" src="/docs/gixy.png">
 
 Gixy — это утилита для анализа конфигурации Nginx.
 Большей частью служит для обнаружения проблем безопасности, но может искать и иные ошибки.
 
-Официально поддерживаются версии Python 2.7, 3.5, 3.6 и 3.7
+Официально поддерживаются версии Python >= 3.6.
 
 &nbsp;
 # Что умеет
 На текущий момент Gixy способна обнаружить:
-  * [[ssrf] Server Side Request Forgery](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/ssrf.md)
-  * [[http_splitting] HTTP Splitting](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/httpsplitting.md)
-  * [[origins] Проблемы валидации referrer/origin](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/origins.md)
-  * [[add_header_redefinition] Переопределение "вышестоящих" заголовков ответа директивой "add_header"](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/addheaderredefinition.md)
-  * [[host_spoofing] Подделка заголовка запроса Host](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/hostspoofing.md)
-  * [[valid_referers] none in valid_referers](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/validreferers.md)
-  * [[add_header_multiline] Многострочные заголовоки ответа](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/addheadermultiline.md)
-  * [[alias_traversal] Path traversal при использовании alias](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/aliastraversal.md)
+
+*   [[ssrf] Server Side Request Forgery](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/ssrf.md)
+*   [[http_splitting] HTTP Splitting](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/httpsplitting.md)
+*   [[origins] Проблемы валидации referrer/origin](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/origins.md)
+*   [[add_header_redefinition] Переопределение "вышестоящих" заголовков ответа директивой "add_header"](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/addheaderredefinition.md)
+*   [[host_spoofing] Подделка заголовка запроса Host](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/hostspoofing.md)
+*   [[valid_referers] none in valid_referers](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/validreferers.md)
+*   [[add_header_multiline] Многострочные заголовоки ответа](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/addheadermultiline.md)
+*   [[alias_traversal] Path traversal при использовании alias](https://github.com/dvershinin/gixy/blob/master/docs/ru/plugins/aliastraversal.md)
 
 Проблемы, которым Gixy только учится можно найти в [Issues с меткой "new plugin"](https://github.com/dvershinin/gixy/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+plugin%22)
 

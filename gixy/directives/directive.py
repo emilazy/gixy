@@ -1,8 +1,10 @@
+"""This module contains all the classes for directives"""
 from gixy.core.variable import Variable
 from gixy.core.regexp import Regexp
 
 
 def get_overrides():
+    """Get a list of all directives that override the default behavior"""
     result = {}
     for klass in Directive.__subclasses__():
         if not klass.nginx_name:
@@ -15,7 +17,8 @@ def get_overrides():
     return result
 
 
-class Directive(object):
+class Directive:
+    """Base class for all directives"""
     nginx_name = None
     is_block = False
     provide_variables = False
@@ -27,6 +30,7 @@ class Directive(object):
         self._raw = raw
 
     def set_parent(self, parent):
+        """Set parent block for this directive"""
         self.parent = parent
 
     @property
@@ -75,7 +79,7 @@ class AuthRequestSetDirective(Directive):
     provide_variables = True
 
     def __init__(self, name, args):
-        super(AuthRequestSetDirective, self).__init__(name, args)
+        super().__init__(name, args)
         self.variable = args[0].strip('$')
         self.value = args[1]
 
@@ -85,11 +89,12 @@ class AuthRequestSetDirective(Directive):
 
 
 class PerlSetDirective(Directive):
+    """The perl_set directive is used to set a value of a variable to a value"""
     nginx_name = 'perl_set'
     provide_variables = True
 
     def __init__(self, name, args):
-        super(PerlSetDirective, self).__init__(name, args)
+        super().__init__(name, args)
         self.variable = args[0].strip('$')
         self.value = args[1]
 
@@ -103,7 +108,7 @@ class SetByLuaDirective(Directive):
     provide_variables = True
 
     def __init__(self, name, args):
-        super(SetByLuaDirective, self).__init__(name, args)
+        super().__init__(name, args)
         self.variable = args[0].strip('$')
         self.value = args[1]
 
@@ -118,7 +123,7 @@ class RewriteDirective(Directive):
     boundary = Regexp(r'[^\s\r\n]')
 
     def __init__(self, name, args):
-        super(RewriteDirective, self).__init__(name, args)
+        super().__init__(name, args)
         self.pattern = args[0]
         self.replace = args[1]
         self.flag = None
@@ -135,11 +140,12 @@ class RewriteDirective(Directive):
 
 
 class RootDirective(Directive):
+    """The root directive is used to define a directory that will hold the files."""
     nginx_name = 'root'
     provide_variables = True
 
     def __init__(self, name, args):
-        super(RootDirective, self).__init__(name, args)
+        super().__init__(name, args)
         self.path = args[0]
 
     @property
@@ -151,14 +157,14 @@ class AliasDirective(Directive):
     nginx_name = 'alias'
 
     def __init__(self, name, args):
-        super(AliasDirective, self).__init__(name, args)
+        super().__init__(name, args)
         self.path = args[0]
 
 
 def is_local_ipv6(ip):
     """
     Check if an IPv6 address is a local address
-    IP may include a port number, e.g. [::1]:80
+    IP may include a port number, e.g. `[::1]:80`
     If port is not specified, IP can be specified without brackets, e.g. ::1
     """
     # Remove brackets if present
@@ -200,7 +206,7 @@ class ResolverDirective(Directive):
     nginx_name = 'resolver'
 
     def __init__(self, name, args):
-        super(ResolverDirective, self).__init__(name, args)
+        super().__init__(name, args)
         addresses = []
         for arg in args:
             if '=' in arg:
@@ -216,7 +222,7 @@ class ResolverDirective(Directive):
             if '.' in addr and is_local_ipv4(addr):
                 continue
             # Check for IPv6 addresses
-            elif ':' in addr and is_local_ipv6(addr):
+            if ':' in addr and is_local_ipv6(addr):
                 continue
 
             external_nameservers.append(addr)

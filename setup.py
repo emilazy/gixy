@@ -51,7 +51,14 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Security',
         'Topic :: Software Development :: Quality Assurance',
-        'Topic :: Software Development :: Testing'
+        'Topic :: Software Development :: Testing',
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12"
     ],
     include_package_data=True
 )
