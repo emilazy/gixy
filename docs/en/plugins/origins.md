@@ -5,9 +5,9 @@ Often it is needed for setting the `X-Frame-Options` header (ClickJacking protec
 
 The most common errors with this configuration are:
   - regex errors;
-  - allow 3rd-party origins.
+  - allow third-party origins.
 
- > Notice: by default Gixy doesn't check regexes for 3rd-party origins matching.
+ > Notice: by default, Gixy doesn't check regexes for third-party origins matching.
  > You can pass a list of trusted domains by using the option `--origins-domains example.com,foo.bar`
 
 ## How can I find it?

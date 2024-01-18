@@ -7,7 +7,7 @@ You should avoid using multiline response headers, because:
 ## How can I find it?
 Misconfiguration example:
 ```nginx
-# http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header
+# https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header
 add_header Content-Security-Policy "
     default-src: 'none';
     script-src data: https://yastatic.net;

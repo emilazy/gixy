@@ -42,7 +42,7 @@ class Variable(object):
         :param str|None name: variable name.
         :param str|Regexp value: variable value..
         :param Regexp boundary: variable boundary set.
-        :param Directive provider: directive that provide variable (e.g. if, location, rewrite, etc).
+        :param Directive provider: directive that provide variable (e.g. if, location, rewrite, etc.).
         :param bool have_script: may variable have nginx script or not (mostly used to indicate a string literal).
         """
 

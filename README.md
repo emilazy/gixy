@@ -58,9 +58,10 @@ gixy
 ```
 
 # Usage
-By default, Gixy will try to analyze Nginx configuration placed in `/etc/nginx/nginx.conf`.
 
-But you can always specify needed path:
+By default, Gixy will try to analyze NGINX configuration placed in `/etc/nginx/nginx.conf`.
+
+But you can always specify the needed path:
 ```
 $ gixy /etc/nginx/nginx.conf
 

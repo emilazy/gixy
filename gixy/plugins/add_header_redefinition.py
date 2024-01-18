@@ -15,7 +15,7 @@ class add_header_redefinition(Plugin):
     summary = 'Nested "add_header" drops parent headers.'
     severity = gixy.severity.LOW
     description = ('"add_header" replaces ALL parent headers. '
-                   'See documentation: http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header')
+                   'See documentation: https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header')
     help_url = 'https://github.com/dvershinin/gixy/blob/master/docs/en/plugins/addheaderredefinition.md'
     directives = ['server', 'location', 'if']
     options = {'headers': set()}

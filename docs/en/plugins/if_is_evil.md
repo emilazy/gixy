@@ -10,11 +10,11 @@ The only 100% safe things which may be done inside if in a location context are:
 * [`return ...;`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return)
 * [`rewrite ... last;`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite)
 
-Anything else may cause unpredictable behaviour, including potential SIGSEGV.
+Anything else may cause unpredictable behavior, including potential SIGSEGV.
 
-It is important to note that the behaviour of if is not inconsistent, given two identical requests it will not randomly fail on one and work on the other, with proper testing and understanding ifs '''can''' be used. The advice to use other directives where available still very much applies, though.
+It is important to note that the behavior of if is not inconsistent, given two identical requests it will not randomly fail on one and work on the other, with proper testing and understanding ifs '''can''' be used. The advice to use other directives where available still very much applies, though.
 
-There are cases where you simply cannot avoid using an if, for example, if you need to test a variable which has no equivalent directive.
+There are cases where you cannot avoid using an if, for example, if you need to test a variable which has no equivalent directive.
 
 ```nginx
 if ($request_method = POST ) {
@@ -138,7 +138,7 @@ In case you think you found an example which isn't listed here - it's a good ide
 
 Directive "if" is part of rewrite module which evaluates instructions imperatively.  On the other hand, NGINX configuration in general is declarative.  At some point due to users demand an attempt was made to enable some non-rewrite directives inside "if", and this lead to situation we have now.  It mostly works, but... see above.
 
-Looks like the only correct fix would be to disable non-rewrite directives inside if completely.  It would break many configuration out there though, so wasn't done yet.
+It looks like the only correct fix would be to disable non-rewrite directives inside if completely.  It would break many configuration out there though, so wasn't done yet.
 
 ## If you still want to use if inside location context
 

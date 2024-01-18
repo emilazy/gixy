@@ -5,7 +5,7 @@ from gixy.directives import block
 
 
 class BaseFormatter(object):
-    skip_parents = set([block.Root, block.HttpBlock])
+    skip_parents = {block.Root, block.HttpBlock}
 
     def __init__(self):
         self.reports = {}

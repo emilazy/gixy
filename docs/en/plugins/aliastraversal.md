@@ -9,17 +9,19 @@ location /i/ {
 ```
 on request of `/i/top.gif`, the file `/data/w3/images/top.gif` will be sent.
 
-But, if the location doesn't ends with directory separator (i.e. `/`):
+But if the location doesn't end with directory separator (i.e. `/`):
+
 ```nginx
 location /i {
     alias /data/w3/images/;
 }
 ```
-on request of `/i../app/config.py`, the file `/data/w3/app/config.py` will be sent.
+On request of `/i../app/config.py`, the file `/data/w3/app/config.py` will be sent.
 
 In other words, the incorrect configuration of `alias` could allow an attacker to read file stored outside the target folder.
 
 ## What can I do?
+
 It's pretty simple:
   - you must find all the `alias` directives;
   - make sure that the parent prefixed location ends with directory separator.

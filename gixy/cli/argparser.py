@@ -87,7 +87,7 @@ class GixyHelpFormatter(HelpFormatter):
 class ArgsParser(ArgumentParser):
     def get_possible_config_keys(self, action):
         """This method decides which actions can be set in a config file and
-        what their keys will be. It returns a list of 0 or more config keys that
+        what their keys will be. It returns a list of zero or more config keys that
         can be used to set the given action's value in a config file.
         """
         keys = []
