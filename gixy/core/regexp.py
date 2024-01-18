@@ -70,8 +70,6 @@ def extract_groups(parsed, top=True):
             result.update(extract_groups(token[1][2], False))
         elif token[0] == sre_parse.BRANCH:
             result.update(extract_groups(token[1][1], False))
-        elif token[0] == sre_parse.SUBPATTERN:
-            result.update(extract_groups(token[1][1], False))
         elif token[0] == sre_parse.IN:
             result.update(extract_groups(token[1], False))
         elif isinstance(token, sre_parse.SubPattern):
