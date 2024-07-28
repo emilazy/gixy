@@ -1,4 +1,3 @@
-from nose.tools import with_setup, assert_equals, assert_not_equals, assert_true
 from gixy.core.context import get_context, pop_context, push_context, purge_context, CONTEXTS, Context
 from gixy.directives.block import Root
 from gixy.core.variable import Variable

@@ -1,4 +1,3 @@
-from nose.tools import assert_true, assert_false, assert_equals
 from gixy.core.regexp import Regexp
 
 '''
