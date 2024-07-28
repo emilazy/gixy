@@ -1,5 +1,4 @@
-from nose.tools import assert_equals, assert_true
-from tests.asserts import assert_in
+from nose.tools import assert_equals, assert_true, assert_in
 import os
 from os import path
 import json
