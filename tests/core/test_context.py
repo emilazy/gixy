@@ -5,15 +5,14 @@ from gixy.core.variable import Variable
 from gixy.core.regexp import Regexp
 
 
-def setup():
+def setup_function():
     assert len(CONTEXTS) == 0
 
 
-def tear_down():
+def teardown_function():
     purge_context()
 
 
-@with_setup(setup, tear_down)
 def test_push_pop_context():
     root_a = Root()
     push_context(root_a)
@@ -30,7 +29,6 @@ def test_push_pop_context():
     assert poped.block == root_a
 
 
-@with_setup(setup, tear_down)
 def test_push_get_purge_context():
     root = Root()
     push_context(root)
@@ -45,7 +43,6 @@ def test_push_get_purge_context():
     assert len(CONTEXTS) == 0
 
 
-@with_setup(setup, tear_down)
 def test_add_variables():
     context = push_context(Root())
     assert len(context.variables['index']) == 0
@@ -68,7 +65,6 @@ def test_add_variables():
     assert context.variables['name']['some'] == some_var
 
 
-@with_setup(setup, tear_down)
 def test_get_variables():
     context = push_context(Root())
     assert len(context.variables['index']) == 0
@@ -91,7 +87,6 @@ def test_get_variables():
     assert context.get_var('args')
 
 
-@with_setup(setup, tear_down)
 def test_context_depend_variables():
     push_context(Root())
     assert len(get_context().variables['index']) == 0
@@ -124,7 +119,6 @@ def test_context_depend_variables():
     assert get_context().get_var(1).value == 'one'
 
 
-@with_setup(setup, tear_down)
 def test_push_failed_with_regexp_py35_gixy_10():
     push_context(Root())
     assert len(get_context().variables['index']) == 0

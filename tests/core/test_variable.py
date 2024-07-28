@@ -4,15 +4,14 @@ from gixy.directives.block import Root
 from gixy.core.regexp import Regexp
 from gixy.core.variable import Variable
 
-def setup():
+def setup_function():
     push_context(Root())
 
 
-def tear_down():
+def teardown_function():
     purge_context()
 
 
-@with_setup(setup, tear_down)
 def test_literal():
     var = Variable(name='simple', value='$uri', have_script=False)
     assert not var.depends
@@ -28,7 +27,6 @@ def test_literal():
     assert not var.must_startswith('u')
 
 
-@with_setup(setup, tear_down)
 def test_regexp():
     var = Variable(name='simple', value=Regexp('^/.*'))
     assert not var.depends
@@ -44,7 +42,6 @@ def test_regexp():
     assert not var.must_startswith('a')
 
 
-@with_setup(setup, tear_down)
 def test_script():
     get_context().add_var('foo', Variable(name='foo', value=Regexp('.*')))
     var = Variable(name='simple', value='/$foo')
@@ -62,7 +59,6 @@ def test_script():
     assert not var.must_startswith('a')
 
 
-@with_setup(setup, tear_down)
 def test_regexp_boundary():
     var = Variable(name='simple', value=Regexp('.*'), boundary=Regexp('/[a-z]', strict=True))
     assert not var.depends
@@ -80,7 +76,6 @@ def test_regexp_boundary():
     assert not var.must_startswith('a')
 
 
-@with_setup(setup, tear_down)
 def test_script_boundary():
     get_context().add_var('foo', Variable(name='foo', value=Regexp('.*'), boundary=Regexp('[a-z]', strict=True)))
     var = Variable(name='simple', value='/$foo', boundary=Regexp('[/a-z0-9]', strict=True))
