@@ -1,3 +1,4 @@
+import pytest
 from gixy.parser.nginx_parser import NginxParser
 from gixy.directives.directive import *
 from gixy.directives.block import *
@@ -7,8 +8,8 @@ def _parse(config):
     return NginxParser(cwd='', allow_includes=False).parse(config)
 
 
-def test_directive():
-    configs = [
+@pytest.mark.parametrize('config,expected', zip(
+    [
         'access_log syslog:server=127.0.0.1,tag=nginx_sentry toolsformat;',
         'user http;',
         'internal;',
@@ -16,34 +17,35 @@ def test_directive():
         "set $foo 'bar';",
         'proxy_pass http://unix:/run/sock.socket;',
         'rewrite ^/([a-zA-Z0-9]+)$ /$1/${arg_v}.pb break;'
-    ]
+    ],
 
-    expected = [
+    [
         [Directive],
         [Directive],
         [Directive],
         [Directive, SetDirective],
+        [Directive, SetDirective],
         [Directive],
         [Directive, RewriteDirective]
     ]
+))
+def test_directive(config, expected):
+    assert_config(config, expected)
 
-    for i, config in enumerate(configs):
-        return assert_config, config, expected[i]
 
-
-def test_blocks():
-    configs = [
+@pytest.mark.parametrize('config,expected', zip(
+    [
         'if (-f /some) {}',
         'location / {}'
-    ]
+    ],
 
-    expected = [
+    [
         [Directive, Block, IfBlock],
         [Directive, Block, LocationBlock],
     ]
-
-    for i, config in enumerate(configs):
-        yield assert_config, config, expected[i]
+))
+def test_blocks(config, expected):
+    assert_config(config, expected)
 
 
 def test_dump_simple():
