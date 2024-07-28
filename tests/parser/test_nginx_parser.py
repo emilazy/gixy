@@ -64,38 +64,38 @@ server {
     '''
 
     tree = _parse(config)
-    assert_is_instance(tree, Directive)
-    assert_is_instance(tree, Block)
-    assert_is_instance(tree, Root)
+    assert isinstance(tree, Directive)
+    assert isinstance(tree, Block)
+    assert isinstance(tree, Root)
 
-    assert_equal(len(tree.children), 1)
+    assert len(tree.children) == 1
     http = tree.children[0]
-    assert_is_instance(http, Directive)
-    assert_is_instance(http, Block)
-    assert_is_instance(http, HttpBlock)
+    assert isinstance(http, Directive)
+    assert isinstance(http, Block)
+    assert isinstance(http, HttpBlock)
 
-    assert_equal(len(http.children), 1)
+    assert len(http.children) == 1
     include_server = http.children[0]
-    assert_is_instance(include_server, Directive)
-    assert_is_instance(include_server, IncludeBlock)
-    assert_equal(include_server.file_path, '/etc/nginx/sites/default.conf')
+    assert isinstance(include_server, Directive)
+    assert isinstance(include_server, IncludeBlock)
+    assert include_server.file_path == '/etc/nginx/sites/default.conf'
 
-    assert_equal(len(include_server.children), 1)
+    assert len(include_server.children) == 1
     server = include_server.children[0]
-    assert_is_instance(server, Directive)
-    assert_is_instance(server, Block)
-    assert_is_instance(server, ServerBlock)
+    assert isinstance(server, Directive)
+    assert isinstance(server, Block)
+    assert isinstance(server, ServerBlock)
 
-    assert_equal(len(server.children), 1)
+    assert len(server.children) == 1
     include_listen = server.children[0]
-    assert_is_instance(include_listen, Directive)
-    assert_is_instance(include_listen, IncludeBlock)
-    assert_equal(include_listen.file_path, '/etc/nginx/conf.d/listen')
+    assert isinstance(include_listen, Directive)
+    assert isinstance(include_listen, IncludeBlock)
+    assert include_listen.file_path == '/etc/nginx/conf.d/listen'
 
-    assert_equal(len(include_listen.children), 1)
+    assert len(include_listen.children) == 1
     listen = include_listen.children[0]
-    assert_is_instance(listen, Directive)
-    assert_equal(listen.args, ['80'])
+    assert isinstance(listen, Directive)
+    assert listen.args == ['80']
 
 
 def test_encoding():
@@ -109,10 +109,10 @@ def test_encoding():
 
 def assert_config(config, expected):
     tree = _parse(config)
-    assert_is_instance(tree, Directive)
-    assert_is_instance(tree, Block)
-    assert_is_instance(tree, Root)
+    assert isinstance(tree, Directive)
+    assert isinstance(tree, Block)
+    assert isinstance(tree, Root)
 
     child = tree.children[0]
     for ex in expected:
-        assert_is_instance(child, ex)
+        assert isinstance(child, ex)
