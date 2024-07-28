@@ -1,4 +1,3 @@
-from nose.tools import assert_equals
 from gixy.parser.raw_parser import *
 
 

@@ -1,5 +1,3 @@
-from nose.tools import assert_equals, assert_true, assert_in
-
 from gixy.formatters import BaseFormatter
 import os
 from os import path
