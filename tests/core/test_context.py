@@ -111,14 +111,14 @@ def test_context_depend_variables():
     # Checks variable overriding
     get_context().add_var('some', Variable('some', value='some_new'))
     get_context().add_var('foo', Variable('foo', value='foo'))
-    assert_not_equals(get_context().get_var('some').value, 'some')
+    assert get_context().get_var('some').value != 'some'
     assert get_context().get_var('some').value == 'some_new'
     assert get_context().get_var('foo').value == 'foo'
     assert get_context().get_var(1).value == 'one'
 
     # Checks variables after restore previous context
     pop_context()
-    assert_not_equals(get_context().get_var('some').value, 'some_new')
+    assert get_context().get_var('some').value != 'some_new'
     assert get_context().get_var('some').value == 'some'
     assert get_context().get_var('foo') == None
     assert get_context().get_var(1).value == 'one'
